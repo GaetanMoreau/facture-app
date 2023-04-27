@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1200px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+    .list__header{
+        background-color: #fff;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 6px;
+    }
+    .btn-primary{
+        background-color: #6858FE;
+        padding: 0.6rem 1.2rem;
+        font-size: 16px;
+        border-radius: 4px;
+        color: #fff;
+    }
+    .btn-primary:hover{
+        background-color: #8A7FED;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #6858FE;
+        color: white;
+    }
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+    tr:hover {
+        background-color: #F1F1F1;
+    }
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Clients</h1>
+    {% if clients|length < 1 %}
+        <div class="list__header">
+            <p>Aucun client</p>
+            <a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
+        </div>
+    {% else %}
+            <div class="list__header">
+                <p>{{clients|length}} clients</p>
+                <a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Society</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <td>{{ client.getFirstname() }}</td>
+                        <td>{{ client.getLastname() }}</td>
+                        <td>{{ client.getSociety() }}</td>
+                        <td>{{ client.getEmail() }}</td>
+                        <td>{{ client.getPhone() }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Afficher</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    {% endif %}
+
+</div>
+{% endblock %}
