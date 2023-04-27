@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!
+{% endblock %}
+
+{% block body %}
+	<div>
+		<h1>Les informations de mon profil utilisateur</h1>
+		<ul>
+			<li>Id :
+				{{ app.user.id }}</li>
+			<li>Email :
+				{{ app.user.email }}
+			</li>
+			<li>Prénom :
+				{{ app.user.firstname }}
+			</li>
+			<li>Nom :
+				{{ app.user.lastname }}
+			</li>
+			<li>Addresse :
+				{{ app.user.address }}</li>
+			<li>Code postal :
+				{{ app.user.postalCode }}</li>
+			<li>Ville :
+				{{ app.user.city }}</li>
+			<li>Numéro de téléphone :
+				{{ app.user.phone }}</li>
+
+
+		</ul>
+		<a href="{{ path('app_profile_edit') }}">Modifier mes informations</a>
+		{{ include('profile/delete.html.twig') }}
+	</div>
+{% endblock %}
