@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientController!{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper">
+        <h1>Clients id {{ client.id }}</h1>
+        <td>{{ client.getFirstname() }}</td>
+        <td>{{ client.getLastname() }}</td>
+        <td>{{ client.getSociety() }}</td>
+        <td>{{ client.getEmail() }}</td>
+        <td>{{ client.getPhone() }}</td>
+    </div>
+{% endblock %}
