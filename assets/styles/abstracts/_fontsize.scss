@@ -1,0 +1,55 @@
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 2rem;
+}
+label {
+    font-size: 2rem;
+}
+
+// A tester
+
+// p, h1, h2, h3, h4, h5, h6 {
+  
+//     --min_breakpoint: 420;
+//     --max_breakpoint: 1440;
+//     --responsive: (var(--min-font) * 1px) + (var(--max-font) - var(--min-font)) * ((100vw - (var(--min_breakpoint) * 1px)) / (var(--max_breakpoint) - var(--min_breakpoint)));
+//     /* FOR BETTER UNDERSTANDING   --responsive: (var(--min-font) * 1px) + (var(--max-font) - var(--min-font)) * ((100vw - 420px) / (1440 - 420)); */
+    
+//     --fontsize:  clamp(var(--min-font) * 1px, var(--responsive), var(--max-font) * 1px);
+//     /* clamp min value - optimal responsive value - max value, basic example font-size: clamp(35px, 4.5vw, 53px); */
+//       font-size: var(--fontsize);
+    
+//   }
+  
+//   h1 {
+//       --min-font: 35;
+//     --max-font: 53;
+//   }
+//   h2 {
+//       --min-font: 30;
+//     --max-font: 45;
+//   }
+//   h3 {
+//     --min-font: 25;
+//     --max-font: 40;
+//   }
+//   p {
+//     --min-font: 18;
+//       --max-font: 22;
+//   }

@@ -1,0 +1,25 @@
+#line1 {
+    position: absolute;
+    width: 100%;
+    @media screen and (max-width: 865px) {
+        top: -200px;
+        path {
+            stroke-width: 15px;
+            z-index: -10;
+        }
+        // Animate the svg path with loop animation
+
+        path {
+            stroke-dasharray: 4000;
+            stroke-dashoffset: 4000;
+            animation: dash 7s linear both;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+    }
+}

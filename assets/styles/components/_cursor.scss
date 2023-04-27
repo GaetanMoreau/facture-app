@@ -1,0 +1,38 @@
+.cursor {
+  position: fixed;
+  left: -7px;
+  top: -8px;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: space-between;
+  will-change: transform;
+  transition: 0.12s ease;
+  border-radius: 50%;
+  z-index: 1000;
+  background-color: $black;
+  pointer-events: none;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    display: none;    
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.cursor__grow {
+  width: 60px;
+  height: 60px;
+  // &::after {
+  //   content: 'DRAG';
+  //   font-family: $gallery;
+  //   color: $black;
+  //   font-size: 1.2rem;
+  //   z-index: 1000000;
+  //   letter-spacing: 1.5px;
+  //   filter: invert(1);
+  // }
+}
