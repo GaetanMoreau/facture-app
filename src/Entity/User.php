@@ -144,6 +144,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->clients->add($client);
             $client->setUser($this);
         }
+    }
     public function getFirstname(): ?string
     {
         return $this->firstname;
@@ -164,6 +165,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $client->setUser(null);
             }
         }
+    }
     public function getLastname(): ?string
     {
         return $this->lastname;
