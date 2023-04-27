@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations
+{% endblock %}
+
+{% block body %}
+	<div id="profile">
+		<h1>Modifier mes informations</h1>
+		{{ form_start(form) }}
+		<button type="submit" class="btn btn-update">Save</button>
+		{{ form_end(form) }}
+		<a href="{{ path('app_account') }}">Retour à l'accueil</a>
+
+	{% endblock %}
