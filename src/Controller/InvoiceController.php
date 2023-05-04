@@ -15,9 +15,10 @@ class InvoiceController extends AbstractController
     #[Route('/invoice', name: 'app_invoice')]
     public function index(): Response
     {
+        
         $user = $this->getUser();
         $invoices = $user->getInvoices();
-
+        // dd($invoices);
         return $this->render('invoice/index.html.twig', [
             'invoices' => $invoices
         ]);
@@ -47,4 +48,49 @@ class InvoiceController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    #[Route('/invoice/{id}', name: 'app_invoice_show')]
+    public function show(Invoice $invoice): Response
+    {
+        $invoice = $this->getDoctrine()
+            ->getRepository(Invoice::class)
+            ->find($invoice);
+
+        return $this->render('invoice/show.html.twig', [
+            'invoice' => $invoice
+        ]);
+    }
+
+    #[Route('/invoice/{id}/edit', name: 'app_invoice_edit')]
+    public function edit(Invoice $invoice, Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(InvoiceFormType::class, $invoice);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $invoice = $form->getData();
+            $invoice->setUser($this->getUser());
+            $invoice->setCreatedAt(new \DateTimeImmutable());
+            $em->persist($invoice);
+            $em->flush();
+            // dd($invoice);
+            return $this->redirectToRoute('app_invoice');
+        }
+        
+        return $this->render('invoice/edit.html.twig', [
+            'controller_name' => 'InvoiceController',
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/invoice/{id}/delete', name: 'app_invoice_delete')]
+    public function delete(Invoice $invoice, EntityManagerInterface $em): Response
+    {
+        $em->remove($invoice);
+        $em->flush();
+
+        return $this->redirectToRoute('app_invoice');
+    }
+    
 }
