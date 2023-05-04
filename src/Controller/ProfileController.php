@@ -16,10 +16,16 @@ class ProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function index(): Response
     {
+        if($this->getUser() == null) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
         ]);
     }
+
+
 
     #[Route('/profile/edit', name: 'app_profile_edit')]
     public function editProfil(EntityManagerInterface $em, SecurityController $security, Request $request): Response

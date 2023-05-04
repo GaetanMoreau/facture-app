@@ -38,6 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->clients = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
     }
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
@@ -59,6 +60,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $postalCode = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Invoice::class)]
+    private Collection $invoices;
 
     public function getId(): ?int
     {
@@ -178,6 +182,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -234,6 +243,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPostalCode(?string $postalCode): self
     {
         $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invoice>
+     */
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function addInvoice(Invoice $invoice): self
+    {
+        if (!$this->invoices->contains($invoice)) {
+            $this->invoices->add($invoice);
+            $invoice->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoice(Invoice $invoice): self
+    {
+        if ($this->invoices->removeElement($invoice)) {
+            // set the owning side to null (unless already changed)
+            if ($invoice->getUser() === $this) {
+                $invoice->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -20,6 +20,7 @@
 	<div class="example-wrapper">
 		<h1>Vue d'ensemble</h1>
 		<a class="btn" href="{{ path("app_client") }}">Liste des client</a>
+		<a href={{ path('app_invoice') }}>Factures</a>
 
 	</div>
 	<div class="example-wrapper">
@@ -27,7 +28,7 @@
 		{% if app.user %}
 			<a href="{{ path('app_logout') }}">
 				Se déconnecter</a>
-			<a href="{{ path('app_profile') }}">Profile</a>
+			<a href="{{ path('app_profile') }}">Profil</a>
 		{% else %}
 			<a href="{{ path('app_login') }}">Se connecter</a>
 		{% endif %}

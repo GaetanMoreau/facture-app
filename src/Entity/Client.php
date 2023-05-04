@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
@@ -30,6 +32,14 @@ class Client
 
     #[ORM\ManyToOne(inversedBy: 'clients')]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Invoice::class)]
+    private Collection $invoices;
+
+    public function __construct()
+    {
+        $this->invoices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,7 +69,7 @@ class Client
 
         return $this;
     }
-
+    
     public function getSociety(): ?string
     {
         return $this->Society;
@@ -104,6 +114,36 @@ class Client
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invoice>
+     */
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function addInvoice(Invoice $invoice): self
+    {
+        if (!$this->invoices->contains($invoice)) {
+            $this->invoices->add($invoice);
+            $invoice->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoice(Invoice $invoice): self
+    {
+        if ($this->invoices->removeElement($invoice)) {
+            // set the owning side to null (unless already changed)
+            if ($invoice->getClient() === $this) {
+                $invoice->setClient(null);
+            }
+        }
 
         return $this;
     }
