@@ -24,15 +24,12 @@
 	</div>
 	<div class="example-wrapper">
 		<h1>Bonjour</h1>
-		{# Accéder à mon profil utilisateur #}
-		{# <a href="{{ path('app_profile') }}">Profile</a>
-									<a href="{{ path('app_logout') }}">Se déconnecter</a> #}
-		{# Créer une condition pour afficher se connecer ou se deconnecter #}
-			{% if app.user %}
-				<a href="{{ path('app_logout') }}"> Se déconnecter</a>
+		{% if app.user %}
+			<a href="{{ path('app_logout') }}">
+				Se déconnecter</a>
+			<a href="{{ path('app_profile') }}">Profile</a>
 		{% else %}
 			<a href="{{ path('app_login') }}">Se connecter</a>
 		{% endif %}
-		{# <a href="{{ path('app_profile') }}">Profile</a> #}
 	</div>
 {% endblock %}
