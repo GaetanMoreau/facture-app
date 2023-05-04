@@ -1,3 +1,12 @@
-<header>
-	<h1>Header</h1>
+<header class="header">
+    <h1><a href="/">Facture&Devis</a></h1>
+    <div>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">
+                Se déconnecter</a>
+            <a href="{{ path('app_profile') }}">{{ app.user.firstname }} {{ app.user.lastname }}</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Se connecter</a>
+        {% endif %}
+    </div>
 </header>
