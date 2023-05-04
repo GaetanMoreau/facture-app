@@ -37,10 +37,22 @@
             font-size: 16px;
             border-radius: 4px;
             color: #fff;
+            border: none;
+        }
+
+        .btn__warning{
+            background-color: red;
         }
 
         .btn-primary:hover {
             background-color: #8A7FED;
+        }
+
+        .btn__container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
         }
 
         table {
@@ -91,7 +103,6 @@
             left: 0;
             z-index: 999;
             display: none;
-            min-width: 160px;
             background-color: #5A4CDF;
             border: none;
             box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
@@ -110,10 +121,56 @@
         }
 
         .dropdown__menu a:hover,
-        .dropdown__menu a:focus {
+        .dropdown__menu a:focus{
             background-color: #8A7FED;
             color: #fff;
             text-decoration: none;
+        }
+        .modal button{
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal__title{
+            font-family: 'League Spartan';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 22px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .modal__container {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 60px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .modal__content{
+            font-family: 'League Spartan';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 17px;
+            text-align: center;
+            color: #7A7A7A;
         }
     </style>
 
@@ -163,8 +220,22 @@
                                 <div class="dropdown__menu" id="dropdown__menu" style="display: none;">
                                     <a class="dropdown__item"
                                        href="{{ path('app_client_edit', { 'id': client.getId() }) }}">Modifier</a>
-                                    <a class="dropdown__item"
-                                       href="{{ path('app_client_delete', { 'id': client.getId() }) }}">Supprimer</a>
+
+                                    <button class="dropdown__toggle" onclick="openModal()">Supprimer</button>
+
+                                    <div class="modal" id="modal">
+                                        <div class="modal__container">
+                                            <h2 class="modal__title">Êtes-vous sûr de vouloir supprimer ce client ?</h2>
+                                            <p class="modal__content">Toute suppression est définitive et les données ne pourront être récupérées.</p>
+                                            <div class="btn__container">
+                                                <a class="btn btn-primary btn__warning"
+                                                   href="{{ path('app_client_delete', { 'id': client.getId() }) }}">Supprimer</a>
+                                                <button class="btn btn-primary"
+                                                   onclick="closeModal()" >Annuler</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </td>
@@ -184,6 +255,16 @@
             } else {
                 dropdownMenu.style.display = "none";
             }
+        }
+
+        function openModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "none";
         }
 
     </script>
