@@ -4,213 +4,189 @@
 {% endblock %}
 
 {% block body %}
-<style>
-	.example-wrapper { margin: 1em auto; max-width: 1200px; width: 95%; font: 18px/1.5 sans-serif; height: 100%; }
-	    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-	
-	    body, html{
-	        height: 100%;
-	    }
-	    .list__header{
-	        background-color: #fff;
-	        padding: 1rem 2rem;
-	        display: flex;
-	        justify-content: space-between;
-	        align-items: center;
-	        border-radius: 6px;
-	    }
-	    .btn-primary{
-	        background-color: #6858FE;
-	        padding: 0.6rem 1.2rem;
-	        font-size: 16px;
-	        border-radius: 4px;
-	        color: #fff;
-	    }
-	    .btn-primary:hover{
-	        background-color: #8A7FED;
-	    }
-	    table {
-	        border-collapse: collapse;
-	        width: 100%;
-	        margin-top: 1rem;
-	    }
-	    th, td {
-	        text-align: left;
-	        padding: 8px;
-	    }
-	    th {
-	        background-color: #6858FE;
-	        color: white;
-	    }
-	    tr:nth-child(odd) {
-	        background-color: #fff;
-	    }
-	
-	    .dropdown {
-	        position: relative;
-	        display: inline-block;
-	    }
-	
-	    .dropdown__togle__container{
-	        display: flex;
-	    }
-	
-	    .dropdown__toggle {
-	        background-color: #6858FE;
-	        border: none;
-	        color: #ffffff;
-	        padding: 8px 16px;
-	        font-size: 16px;
-	        cursor: pointer;
-	    }
-	
-	    .dropdown__toggle:hover {
-	        background-color: #8A7FED;
-	    }
-	
-	    .dropdown__menu {
-	        position: absolute;
-	        top: 100%;
-	        left: 0;
-	        z-index: 999;
-	        display: none;
-	        min-width: 160px;
-	        background-color: #5A4CDF;
-	        border: none;
-	        box-shadow: 0 6px 12px rgba(0,0,0,.175);
-	    }
-	
-	    .dropdown__menu a {
-	        display: block;
-	        padding: 3px 20px;
-	        clear: both;
-	        font-weight: normal;
-	        line-height: 1.42857143;
-	        color: #fff;
-	        white-space: nowrap;
-	        font-size: 16px;
-	        border-bottom: 1px solid #8178dc;
-	    }
-	
-	    .dropdown__menu a:hover,
-	    .dropdown__menu a:focus {
-	        background-color: #8A7FED;
-	        color: #fff;
-	        text-decoration: none;
-	    }
-	
-		<div class="example-wrapper">
-			<h1>Clients</h1>
-			{% if clients|length < 1 %}
-				<div class="list__header">
-					<p>Aucun client</p>
-					<a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
-				</div>
-			{% else %}
-				<div class="list__header">
-					<p>{{clients|length}}
-						clients</p>
-					<a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
-				</div>
-				<table>
-					<thead>
-						<tr>
-							<th>Firstname</th>
-							<th>Lastname</th>
-							<th>Society</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for client in clients %}
-							<tr>
-								<td>{{ client.getFirstname() }}</td>
-								<td>{{ client.getLastname() }}</td>
-								<td>{{ client.getSociety() }}</td>
-								<td>{{ client.getEmail() }}</td>
-								<td>{{ client.getPhone() }}</td>
-								<td>
-									<a class="btn btn-primary" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Afficher</a>
-								</td>
-								<td>
-									<a class="btn btn-primary" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Supprimer</a>
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			{% endif %}
-	
-	<<<<<<< HEAD
-	<div class="example-wrapper">
-	    <h1>Clients</h1>
-	    {% if clients|length < 1 %}
-	        <div class="list__header">
-	            <p>Aucun client</p>
-	            <a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
-	        </div>
-	    {% else %}
-	            <div class="list__header">
-	                <p>{{clients|length}} {{ (clients|length > 1) ? 'clients' : 'client' }}
-	                </p>
-	                <a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
-	            </div>
-	            <table>
-	                <thead>
-	                <tr>
-	                    <th>Prénom</th>
-	                    <th>Nom</th>
-	                    <th>Société</th>
-	                    <th>Email</th>
-	                    <th>Téléphone</th>
-	                    <th>Actions</th>
-	                </tr>
-	                </thead>
-	                <tbody>
-	                {% for client in clients %}
-	                    <tr>
-	                        <td>{{ client.getFirstname() }}</td>
-	                        <td>{{ client.getLastname() }}</td>
-	                        <td>{{ client.getSociety() }}</td>
-	                        <td>{{ client.getEmail() }}</td>
-	                        <td>{{ client.getPhone() }}</td>
-	                        <td>
-	                            <div class="dropdown">
-	                                <div class="dropdown__togle__container">
-	                                    <a class="dropdown__toggle" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Afficher</a>
-	                                    <button class="dropdown__toggle" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
-	                                        >
-	                                    </button>
-	                                </div>
-	
-	                                <div class="dropdown__menu" id="dropdown__menu" style="display: none;">
-	                                    <a class="dropdown__item" href="{{ path('app_client_edit', { 'id': client.getId() }) }}">Modifier</a>
-	                                    <a class="dropdown__item" href="{{ path('app_client_delete', { 'id': client.getId() }) }}">Supprimer</a>
-	                                </div>
-	                            </div>
-	                        </td>
-	                    </tr>
-	                {% endfor %}
-	                </tbody>
-	            </table>
-	    {% endif %}
-	
-	</div>
-	
-	    <script>
-	        function toggleDropdown() {
-	            var dropdownMenu = document.getElementById("dropdown__menu");
-	            if (dropdownMenu.style.display === "none") {
-	                dropdownMenu.style.display = "block";
-	            } else {
-	                dropdownMenu.style.display = "none";
-	            }
-	        }
-	
-	    </script>
-	=======
-		</div>
-	>>>>>>> alexis--header-footer-error-components-and-invoice-crud
-	{% endblock %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 1200px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+            height: 100%;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        .list__header {
+            background-color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background-color: #6858FE;
+            padding: 0.6rem 1.2rem;
+            font-size: 16px;
+            border-radius: 4px;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #8A7FED;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #6858FE;
+            color: white;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown__togle__container {
+            display: flex;
+        }
+
+        .dropdown__toggle {
+            background-color: #6858FE;
+            border: none;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropdown__toggle:hover {
+            background-color: #8A7FED;
+        }
+
+        .dropdown__menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 999;
+            display: none;
+            min-width: 160px;
+            background-color: #5A4CDF;
+            border: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        }
+
+        .dropdown__menu a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #fff;
+            white-space: nowrap;
+            font-size: 16px;
+            border-bottom: 1px solid #8178dc;
+        }
+
+        .dropdown__menu a:hover,
+        .dropdown__menu a:focus {
+            background-color: #8A7FED;
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Clients</h1>
+        {% if clients|length < 1 %}
+            <div class="list__header">
+                <p>Aucun client</p>
+                <a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
+            </div>
+        {% else %}
+            <div class="list__header">
+                <p>{{ clients|length }} {{ (clients|length > 1) ? 'clients' : 'client' }}
+                </p>
+                <a class="btn btn-primary" href="{{ path("app_client_add") }}">Nouveau client</a>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Société</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for client in clients %}
+                    <tr>
+                        <td>{{ client.getFirstname() }}</td>
+                        <td>{{ client.getLastname() }}</td>
+                        <td>{{ client.getSociety() }}</td>
+                        <td>{{ client.getEmail() }}</td>
+                        <td>{{ client.getPhone() }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <div class="dropdown__togle__container">
+                                    <a class="dropdown__toggle"
+                                       href="{{ path('app_client_id', { 'id': client.getId() }) }}">Afficher</a>
+                                    <button class="dropdown__toggle" onclick="toggleDropdown()" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        >
+                                    </button>
+                                </div>
+
+                                <div class="dropdown__menu" id="dropdown__menu" style="display: none;">
+                                    <a class="dropdown__item"
+                                       href="{{ path('app_client_edit', { 'id': client.getId() }) }}">Modifier</a>
+                                    <a class="dropdown__item"
+                                       href="{{ path('app_client_delete', { 'id': client.getId() }) }}">Supprimer</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById("dropdown__menu");
+            if (dropdownMenu.style.display === "none") {
+                dropdownMenu.style.display = "block";
+            } else {
+                dropdownMenu.style.display = "none";
+            }
+        }
+
+    </script>
+
+    </div>
+{% endblock %}
