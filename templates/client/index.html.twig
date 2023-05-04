@@ -62,11 +62,13 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Society</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Société</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
+                    <th>Actions</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -82,7 +84,10 @@
                             <a class="btn btn-primary" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Afficher</a>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{{ path('app_client_id', { 'id': client.getId() }) }}">Supprimer</a>
+                            <a class="btn btn-primary" href="{{ path('app_client_delete', { 'id': client.getId() }) }}">Supprimer</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_client_edit', { 'id': client.getId() }) }}">Modifier</a>
                         </td>
                     </tr>
                 {% endfor %}
