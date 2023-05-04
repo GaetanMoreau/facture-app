@@ -4,7 +4,10 @@
 
 {% block body %}
     <div class="example-wrapper">
-        <h1>Clients id {{ id }}</h1>
-
+        <h1>Modifier les informations de mon client</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Modifier</button>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

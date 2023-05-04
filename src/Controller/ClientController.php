@@ -70,7 +70,7 @@ class ClientController extends AbstractController
         $clientId = $request->get('id');
         $client = $cr->find($clientId);
 
-        return $this->render('client/info.html.twig', [
+        return $this->render('client/edit.html.twig', [
             'client' => $client,
         ]);
     }
