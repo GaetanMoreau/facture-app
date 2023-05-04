@@ -2,22 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Client;
+use App\Entity\Invoice;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class ClientType extends AbstractType
+class InvoiceFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Lastname')
-            ->add('Firstname')
-            ->add('Society')
-            ->add('email')
-            ->add('Phone')
+            ->add('reference')
+            // ->add('createdAt')
+            // ->add('updatedAt')
+            ->add('dueDate')
+            ->add('totalAmount')
+            ->add('taxRate')
+            ->add('notes')
+            ->add('status')
+            // ->add('client')
+            // ->add('user')
             ->add('Valider', SubmitType::class)
         ;
     }
@@ -25,7 +30,7 @@ class ClientType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Client::class,
+            'data_class' => Invoice::class,
         ]);
     }
 }

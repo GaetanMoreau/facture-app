@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Client;
-use App\Form\ClientType;
+use App\Form\ClientFormType;
 use App\Repository\ClientRepository;
 
 class ClientController extends AbstractController
@@ -27,7 +27,7 @@ class ClientController extends AbstractController
     public function add(Request $request, EntityManagerInterface $em): Response
     {
         $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientFormType::class, $client);
 
         $form->handleRequest($request);
 
