@@ -18,6 +18,9 @@
 		{% endblock %}
 	</head>
 	<body>
+		{{ include('common/header.html.twig') }}
 		{% block body %}{% endblock %}
+		{{ include('common/footer.html.twig') }}
+		<script src="{{asset('js/app.js') }}"></script>
 	</body>
 </html>
