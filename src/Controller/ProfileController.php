@@ -14,20 +14,6 @@ use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-    public function index(): Response
-    {
-        if($this->getUser() == null) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
-    }
-
-
-
-    #[Route('/profile/edit', name: 'app_profile_edit')]
     public function editProfil(EntityManagerInterface $em, SecurityController $security, Request $request): Response
     {
         $user = $security->getUser();
@@ -35,12 +21,12 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('success', 'Votre profil a bien été mdoifié.');
+            $this->addFlash('success', 'Votre profil a bien été modifié.');
 
             return $this->redirectToRoute('app_profile');
         }
 
-        return $this->render('profile/edit.html.twig', [
+        return $this->render('profile/index.html.twig', [
             'profil' => $user,
             'form' => $form->createView(),
         ]);
