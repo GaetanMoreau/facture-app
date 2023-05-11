@@ -20,13 +20,7 @@ class AccountController extends AbstractController
         $invoices = $user->getInvoices();
         $expenses = $user->getExpenses();
         $estimates = $user->getEstimates();
-  
-        if (!$clients) {
-          $clients = [];
-        }
-        if (!$user) {
-          return $this->redirectToRoute('app_login');
-        }
+
 
         $totalInvoices = 0;
         foreach ($invoices as $invoice) {
