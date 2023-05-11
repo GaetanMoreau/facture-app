@@ -4,32 +4,69 @@
 {% endblock %}
 
 {% block body %}
-	<div>
-		<h1>Les informations de mon profil utilisateur</h1>
-		<ul>
-			<li>Id :
-				{{ app.user.id }}</li>
-			<li>Email :
-				{{ app.user.email }}
-			</li>
-			<li>Prénom :
-				{{ app.user.firstname }}
-			</li>
-			<li>Nom :
-				{{ app.user.lastname }}
-			</li>
-			<li>Addresse :
-				{{ app.user.address }}</li>
-			<li>Code postal :
-				{{ app.user.postalCode }}</li>
-			<li>Ville :
-				{{ app.user.city }}</li>
-			<li>Numéro de téléphone :
-				{{ app.user.phone }}</li>
+	<section id="profil">
+		<div
+			class="container__left">
+			{# {{ form_start(form), {'attr': {'class': 'left__wrapper'}}}} #}
+			{{ form_start(form, {'attr': {'class': 'left__wrapper'}})}},
+			<h1>Informations générales</h1>
+			<div class="form-group">
+				<div class="form-field">
+					{{ form_label(form.email, 'Email', {'label_attr': {'class': 'required'}}) }}
+					{{ form_widget(form.email, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+				</div>
+				<div class="form-field">
+					{{ form_label(form.firstname, 'Firstname') }}
+					{{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-field">
+					{{ form_label(form.lastname, 'Lastname') }}
+					{{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="form-field">
+					{{ form_label(form.phone, 'Phone') }}
+					{{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<h1>Adresse</h1>
+			<div class="form-group">
+				<div class="form-field">
+					{{ form_label(form.address, 'Address') }}
+					{{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="form-field">
+					{{ form_label(form.city, 'City') }}
+					{{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-field">
+					{{ form_label(form.postalCode, 'Postal code') }}
+					{{ form_widget(form.postalCode, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<input type="hidden" id="profile_form__token" name="profile_form[_token]" value="{{ csrf_token('authenticate') }}">
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary update-btn">Modifier mes informations</button>
+				{{ form_end(form) }}
+				{{ include('profile/delete.html.twig') }}
+			</div>
 
+		</div>
+		<div class="container__right">
+			<div class="right__wrapper">
+				<h1>
+					{{ app.user.firstname }}
+					{{ app.user.lastname }}
+				</h1>
 
-		</ul>
-		<a href="{{ path('app_profile_edit') }}">Modifier mes informations</a>
-		{{ include('profile/delete.html.twig') }}
-	</div>
-{% endblock %}
+				{# <img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" alt="avatar"> #}
+				<img src="{{ asset('img/avatar/default-avatar.png') }}" alt="avatar">
+				<h2>{{ app.user.city }},
+					{{app.user.postalCode}}
+				</h2>
+			</div>
+		</section>
+	{% endblock %}
