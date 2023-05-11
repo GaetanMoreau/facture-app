@@ -24,12 +24,14 @@
 	<body>
 		{{ include('common/header.html.twig') }}
 		<div class="main__container">
-			{{ include('common/menu.html.twig') }}
-			<div style="width: 100%;">
-				{% block body %}{% endblock %}
+			{% if app.user %}
+				{{ include('common/menu.html.twig') }}
+			{% endif %}
+
+			<div style="width: 100%;"> {% block body %}{% endblock %}
+				</div>
 			</div>
-		</div>
-		{{ include('common/footer.html.twig') }}
-		<script src="{{asset('js/app.js') }}"></script>
-	</body>
-</html>
+			{{ include('common/footer.html.twig') }}
+			<script src="{{asset('js/app.js') }}"></script>
+		</body>
+	</html>

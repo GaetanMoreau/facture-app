@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EstimateController!
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper">
+		<h1>Devis</h1>
+		{% if estimates|length < 1 %}
+			<div class="list__header">
+				<p>Aucun devis</p>
+				<a class="btn btn-primary" href="{{ path("app_estimate_add") }}">Nouveau devis</a>
+			</div>
+		{% else %}
+			<div class="list__header">
+				<p>{{ estimates|length }}
+					{{ (estimates|length > 1) ? 'devis' : 'devis' }}
+				</p>
+				<a class="btn btn-primary" href="{{ path("app_estimate_add") }}"><img src="{{ asset('images/icons/icon-add.svg') }}">Nouveau devis</a>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Numéro</th>
+						<th>Date de création</th>
+						<th>Montant</th>
+						<th>État</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for estimate in estimates %}
+						<tr>
+							<td>{{ estimate.id }}</td>
+							<td>{{ estimate.createdAt | date('d/m/Y') }}</td>
+							<td>{{ estimate.amount }}€</td>
+							<td>{{ estimate.state }}</td>
+							<td>
+								<a href="{{ path('app_estimate_edit', {'id': estimate.id}) }}">
+									Modifier</a>
+								<a href="{{ path('app_estimate_delete', {'id': estimate.id}) }}">
+									Supprimer</a>
+								<a href="{{ path('app_estimate_show', {'id': estimate.id}) }}">
+									Voir</a>
+							</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+			</table>
+		{% endif %}
+	</div>
+{% endblock %}
