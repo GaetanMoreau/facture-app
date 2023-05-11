@@ -13,27 +13,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AccountController extends AbstractController
 {
     #[Route('/', name: 'app_account')]
-public function index(): Response
-{
-    $user = $this->getUser();
+    public function index(): Response
+    {
+        $user = $this->getUser();
+        $clients = $user->getClients();
+        $invoices = $user->getInvoices();
+        $expenses = $user->getExpenses();
+  
+        if (!$clients) {
+          $clients = [];
+        }
+        if (!$user) {
+          return $this->redirectToRoute('app_login');
+        }
 
+        $totalInvoices = 0;
+        foreach ($invoices as $invoice) {
+            $totalInvoices += $invoice->getTotalAmount();
+        }
+        $totalExpenses = 0;
+        foreach ($expenses as $expense) {
+            $totalExpenses += $expense->getAmount();
+        }
 
-    if (!$user) {
-        return $this->redirectToRoute('app_login');
-    }
-
-    $clients = $user->getClients();
-
-    if (!$clients) {
-        $clients = [];
-    }
-
-    $invoices = $user->getInvoices();
-
-    return $this->render('account/index.html.twig', [
-        'controller_name' => 'AccountController',
-        'clients' => $clients,
-        'invoices' => $invoices
-    ]);
-}
+        return $this->render('account/index.html.twig', [
+            'controller_name' => 'AccountController',
+            'clients' => $clients,
+            'invoices' => $invoices,
+            'expenses' => $expenses,
+            'totalExpense' => $totalExpenses,
+            'totalInvoices' => $totalInvoices
+        ]);
+      }
 }

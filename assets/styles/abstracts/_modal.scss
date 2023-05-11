@@ -27,13 +27,14 @@
 .modal__container {
   background-color: #fff;
   margin: 10% auto;
-  padding: 60px;
+  padding: 120px 60px;
   border: 1px solid #888;
   width: 80%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  border-radius: 6px;
 }
 .modal__content{
   font-family: 'League Spartan', sans-serif;

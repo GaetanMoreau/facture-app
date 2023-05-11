@@ -1,17 +1,19 @@
 {% extends './base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}Ajout d'un client - Facture&Devis{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
-
-    <div class="example-wrapper">
-        <h1>Ajouter un client</h1>
+    <div class="example-wrapper element__form__container">
+        <div class="element__form__title">
+            <h1>Ajouter un client</h1>
+            <a href="/client">Retour</a>
+        </div>
         {{ form_start(form) }}
-        {{ form_widget(form) }}
+            {{ form_row(form.Firstname, {'label': 'Prénom'}) }}
+            {{ form_row(form.Lastname, {'label': 'Nom'}) }}
+            {{ form_row(form.Society, {'label': 'Société'}) }}
+            {{ form_row(form.email, {'label': 'Email'}) }}
+            {{ form_row(form.Phone, {'label': 'Téléphone'}) }}
         {{ form_end(form) }}
     </div>
 {% endblock %}

@@ -21,13 +21,13 @@
         <table>
             <thead>
             <tr>
-                <th>Numéro</th>
+                <th>Facture n°</th>
                 <th>Date de création</th>
                 <th>Échéance</th>
                 <th>Montant</th>
                 <th>TVA</th>
                 <th>Commentaire</th>
-                <th>Statut</th>
+                <th>État</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -37,8 +37,8 @@
                 <td>{{ invoice.id }}</td>
                 <td>{{ invoice.createdAt | date('d/m/Y') }}</td>
                 <td>{{ invoice.dueDate | date('d/m/Y') }}</td>
-                <td>{{ invoice.totalAmount }}€</td>
-                <td>{{ invoice.taxRate }}%</td>
+                <td>{{ invoice.totalAmount }} € TTC</td>
+                <td>{{ invoice.taxRate }} %</td>
                 <td>{{ invoice.notes }}</td>
                 <td>{{ invoice.status }}</td>
                 <td>
