@@ -70,7 +70,7 @@ class ClientController extends AbstractController
     {
         $clientId = $request->get('id');
         $client = $cr->find($clientId);
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientFormType::class, $client);
 
         $form->handleRequest($request);
 
