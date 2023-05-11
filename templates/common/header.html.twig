@@ -1,12 +1,12 @@
 <header class="header">
-    <a href="/"><img src="{{ asset('images/logo.webp')}}"></a>
-    <div>
-        {% if app.user %}
-            <a href="{{ path('app_logout') }}">
-                Se déconnecter</a>
-            <a href="{{ path('app_profile') }}">{{ app.user.firstname }} {{ app.user.lastname }}</a>
-        {% else %}
-            <a href="{{ path('app_login') }}">Se connecter</a>
-        {% endif %}
-    </div>
-</header>
+	<a href="/"><img src="{{ asset('images/logo.webp')}}"></a>
+	<div class="header__infos">
+		{% if app.user %}
+			<a href="{{ path('app_profile') }}"><img class="header__avatar" src="{{ asset('img/avatar/default-avatar.png') }}" alt="avatar"></img>Profil</a>
+		<a href="{{ path('app_logout')}}">
+			Se déconnecter</a>
+	{% else %}
+		<a href="{{ path('app_login') }}">Se connecter</a>
+		<a href="{{ path('app_register') }}">S'inscrire</a>
+	{% endif %}
+</div></header>

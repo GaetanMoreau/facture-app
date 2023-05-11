@@ -36,9 +36,13 @@ class Client
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Invoice::class)]
     private Collection $invoices;
 
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Estimate::class)]
+    private Collection $estimates;
+
     public function __construct()
     {
         $this->invoices = new ArrayCollection();
+        $this->estimates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +146,36 @@ class Client
             // set the owning side to null (unless already changed)
             if ($invoice->getClient() === $this) {
                 $invoice->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Estimate>
+     */
+    public function getEstimates(): Collection
+    {
+        return $this->estimates;
+    }
+
+    public function addEstimate(Estimate $estimate): self
+    {
+        if (!$this->estimates->contains($estimate)) {
+            $this->estimates->add($estimate);
+            $estimate->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstimate(Estimate $estimate): self
+    {
+        if ($this->estimates->removeElement($estimate)) {
+            // set the owning side to null (unless already changed)
+            if ($estimate->getClient() === $this) {
+                $estimate->setClient(null);
             }
         }
 

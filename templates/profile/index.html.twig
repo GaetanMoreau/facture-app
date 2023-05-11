@@ -5,9 +5,7 @@
 
 {% block body %}
 	<section id="profil">
-		<div
-			class="container__left">
-			{# {{ form_start(form), {'attr': {'class': 'left__wrapper'}}}} #}
+		<div class="container__left">
 			{{ form_start(form, {'attr': {'class': 'left__wrapper'}})}},
 			<h1>Informations générales</h1>
 			<div class="form-group">
@@ -53,7 +51,6 @@
 				{{ form_end(form) }}
 				{{ include('profile/delete.html.twig') }}
 			</div>
-
 		</div>
 		<div class="container__right">
 			<div class="right__wrapper">

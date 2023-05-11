@@ -40,6 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->clients = new ArrayCollection();
         $this->invoices = new ArrayCollection();
         $this->expenses = new ArrayCollection();
+        $this->estimates = new ArrayCollection();
     }
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
@@ -67,6 +68,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Expense::class)]
     private Collection $expenses;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Estimate::class)]
+    private Collection $estimates;
 
     public function getId(): ?int
     {
@@ -294,6 +297,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->expenses->contains($expense)) {
             $this->expenses->add($expense);
             $expense->setUser($this);
+     * @return Collection<int, Estimate>
+     */
+    public function getEstimates(): Collection
+    {
+        return $this->estimates;
+    }
+
+    public function addEstimate(Estimate $estimate): self
+    {
+        if (!$this->estimates->contains($estimate)) {
+            $this->estimates->add($estimate);
+            $estimate->setUser($this);
         }
 
         return $this;
@@ -305,6 +320,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($expense->getUser() === $this) {
                 $expense->setUser(null);
+            }
+        }
+
+      return $this;
+    }
+    public function removeEstimate(Estimate $estimate): self
+    {
+        if ($this->estimates->removeElement($estimate)) {
+            // set the owning side to null (unless already changed)
+            if ($estimate->getUser() === $this) {
+                $estimate->setUser(null);
             }
         }
 

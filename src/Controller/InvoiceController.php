@@ -18,7 +18,6 @@ class InvoiceController extends AbstractController
         
         $user = $this->getUser();
         $invoices = $user->getInvoices();
-        // dd($invoices);
         return $this->render('invoice/index.html.twig', [
             'invoices' => $invoices
         ]);
