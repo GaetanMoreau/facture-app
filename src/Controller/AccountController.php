@@ -19,6 +19,7 @@ class AccountController extends AbstractController
         $clients = $user->getClients();
         $invoices = $user->getInvoices();
         $expenses = $user->getExpenses();
+        $estimates = $user->getEstimates();
   
         if (!$clients) {
           $clients = [];
@@ -35,14 +36,20 @@ class AccountController extends AbstractController
         foreach ($expenses as $expense) {
             $totalExpenses += $expense->getAmount();
         }
+        $totalEstimates = 0;
+        foreach ($estimates as $estimate) {
+            $totalEstimates += $estimate->getAmount();
+        }
 
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController',
             'clients' => $clients,
             'invoices' => $invoices,
             'expenses' => $expenses,
+            'estimates' => $estimates,
             'totalExpense' => $totalExpenses,
-            'totalInvoices' => $totalInvoices
+            'totalInvoices' => $totalInvoices,
+            'totalEstimates' => $totalEstimates
         ]);
       }
 }

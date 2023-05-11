@@ -297,8 +297,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if (!$this->expenses->contains($expense)) {
             $this->expenses->add($expense);
             $expense->setUser($this);
-     * @return Collection<int, Estimate>
-     */
+        }
+        return $this;
+    }
     public function getEstimates(): Collection
     {
         return $this->estimates;

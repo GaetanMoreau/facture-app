@@ -56,6 +56,12 @@
                     <p> Pour un total de {{ expenses|length }} {{ (expenses|length > 1) ? 'dépenses' : 'dépense' }}</p>
                 </div>
             {% endif %}
+            {% if estimates %}
+                <div class="home__details__item">
+                    <span>{{ totalEstimates }} €</span>
+                    <p> Pour un total de {{ estimates|length }} devis</p>
+                </div>
+            {% endif %}
             <div class="home__details__item">
                 <span>{{ totalInvoices - totalExpense}} €</span>
                 <p>Chiffre d’affaires (factures - dépenses)</p>

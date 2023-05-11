@@ -1,11 +1,14 @@
 {% extends './base.html.twig' %}
 
-{% block title %}Hello AccountController!
+{% block title %}Ajout d'un devis - Facture&Devis
 {% endblock %}
 
 {% block body %}
-	<div>
-		<h1>Ajouter un devis</h1>
+	<div class="example-wrapper element__form__container">
+		<div class="element__form__title">
+			<h1>Ajouter un devis</h1>
+			<a href="/estimate">Retour</a>
+		</div>
 		{{ form_start(form) }}
 		<div class="form-group">
 			<div class="form-field">
