@@ -1,0 +1,25 @@
+.btn-primary {
+  background-color: #6858FE;
+  padding: 0.6rem 1.2rem;
+  font-size: 16px;
+  border-radius: 4px;
+  color: #fff !important;
+  display: flex;
+  gap: 8px;
+  border: none;
+}
+
+.btn__warning{
+  background-color: red;
+}
+
+.btn-primary:hover {
+  background-color: #8A7FED;
+}
+
+.btn__container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+}
