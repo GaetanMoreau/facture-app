@@ -4,33 +4,63 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
 
-	<div class="example-wrapper">
-		<h1>Vue d'ensemble</h1>
-		<a class="btn" href="{{ path("app_client") }}">Liste des client</a>
-		<a href={{ path('app_invoice') }}>Factures</a>
+    <style>
+        .home__details {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+        }
 
-	</div>
-	<div class="example-wrapper">
-		<h1>Bonjour</h1>
-		{% if app.user %}
-			<a href="{{ path('app_logout') }}">
-				Se déconnecter</a>
-			<a href="{{ path('app_profile') }}">Profil</a>
-		{% else %}
-			<a href="{{ path('app_login') }}">Se connecter</a>
-		{% endif %}
-	</div>
+        .home__details__item {
+            background: #F7F7F7;
+            box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+            border-radius: 6px;
+            padding: 1rem;
+            width: 33%;
+        }
+
+        .home__details__item span {
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .home__details__item p {
+            font-family: 'League Spartan', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 15px;
+            color: #707070;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Vue d'ensemble</h1>
+        <div class="home__details">
+            {% if clients %}
+                <div class="home__details__item">
+                    <span>{{ clients|length }}</span>
+                    <p> {{ (clients|length > 1) ? 'clients' : 'client' }}
+                </div>
+            {% endif %}
+            {% if invoices %}
+                <div class="home__details__item">
+                    <span>{{ invoices|length }}</span>
+                    <p> {{ (invoices|length > 1) ? 'factures' : 'facture' }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="example-wrapper">
+        <h1>Bonjour</h1>
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}">
+                Se déconnecter</a>
+            <a href="{{ path('app_profile') }}">Profil</a>
+        {% else %}
+            <a href="{{ path('app_login') }}">Se connecter</a>
+        {% endif %}
+    </div>
 {% endblock %}
