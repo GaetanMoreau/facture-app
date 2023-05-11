@@ -17,12 +17,25 @@ class AccountController extends AbstractController
     {
         $user = $this->getUser();
         $clients = $user->getClients();
-        $invoices = $user->getInvoices()    ;
+        $invoices = $user->getInvoices();
+        $expenses = $user->getExpenses();
+
+        $totalInvoices = 0;
+        foreach ($invoices as $invoice) {
+            $totalInvoices += $invoice->getTotalAmount();
+        }
+        $totalExpenses = 0;
+        foreach ($expenses as $expense) {
+            $totalExpenses += $expense->getAmount();
+        }
 
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController',
             'clients' => $clients,
-            'invoices' => $invoices
+            'invoices' => $invoices,
+            'expenses' => $expenses,
+            'totalExpense' => $totalExpenses,
+            'totalInvoices' => $totalInvoices
         ]);
     }
 }

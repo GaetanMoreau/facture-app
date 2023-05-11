@@ -41,25 +41,32 @@
             {% if clients %}
                 <div class="home__details__item">
                     <span>{{ clients|length }}</span>
-                    <p> {{ (clients|length > 1) ? 'clients' : 'client' }}
+                    <p> {{ (clients|length > 1) ? 'Clients' : 'Client' }}</p>
                 </div>
             {% endif %}
             {% if invoices %}
                 <div class="home__details__item">
-                    <span>{{ invoices|length }}</span>
-                    <p> {{ (invoices|length > 1) ? 'factures' : 'facture' }}
+                    <span>{{ totalInvoices }} €</span>
+                    <p> Pour un total de {{ invoices|length }} {{ (invoices|length > 1) ? 'factures' : 'facture' }}</p>
                 </div>
             {% endif %}
+            {% if expenses %}
+                <div class="home__details__item">
+                    <span>{{ totalExpense }} €</span>
+                    <p> Pour un total de {{ expenses|length }} {{ (expenses|length > 1) ? 'dépenses' : 'dépense' }}</p>
+                </div>
+            {% endif %}
+            <div class="home__details__item">
+                <span>{{ totalInvoices - totalExpense}} €</span>
+                <p>Chiffre d’affaires (factures - dépenses)</p>
+            </div>
         </div>
     </div>
 
     <div class="example-wrapper">
-        <h1>Bonjour</h1>
         {% if app.user %}
-            <a href="{{ path('app_logout') }}">
-                Se déconnecter</a>
-            <a href="{{ path('app_profile') }}">Profil</a>
         {% else %}
+            <h1>Bonjour</h1>
             <a href="{{ path('app_login') }}">Se connecter</a>
         {% endif %}
     </div>

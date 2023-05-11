@@ -1,0 +1,51 @@
+.element__form__title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  max-width: 600px;
+  margin-bottom: 2rem;
+
+  a:hover{
+    color: #6858FE;
+  }
+}
+.element__form__container form {
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+}
+
+.element__form__container input[type="text"],
+.element__form__container input[type="email"],
+.element__form__container input[type="number"],
+.element__form__container select,
+.element__form__container input[type="password"],
+.element__form__container textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.element__form__container label {
+  font-weight: bold;
+}
+
+.element__form__container button {
+  background-color: #6858FE;
+  padding: 0.6rem 1.2rem;
+  font-size: 16px;
+  border-radius: 4px;
+  color: #fff !important;
+  display: flex;
+  gap: 8px;
+  border: none;
+
+  &:hover{
+    background-color: #8A7FED;
+    cursor: pointer;
+  }
+}

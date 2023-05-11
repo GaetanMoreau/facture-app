@@ -1,0 +1,18 @@
+{% extends './base.html.twig' %}
+
+{% block title %}Ajout d'une dépense - Facture&Devis{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper element__form__container">
+        <div class="element__form__title">
+            <h1>Ajouter une dépense</h1>
+            <a href="/expense">Retour</a>
+        </div>
+        {{ form_start(form) }}
+            {{ form_row(form.name, {'label': 'Libellé'}) }}
+            {{ form_row(form.date, {'label': 'Date'}) }}
+            {{ form_row(form.amount, {'label': 'Montant'}) }}
+            {{ form_row(form.status, {'label': 'État'}) }}
+        {{ form_end(form) }}    
+    </div>
+{% endblock %}
