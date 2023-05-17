@@ -4,67 +4,40 @@
 {% endblock %}
 
 {% block body %}
-
-    <style>
-        .home__details {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-        }
-
-        .home__details__item {
-            background: #F7F7F7;
-            box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
-            border-radius: 6px;
-            padding: 1rem;
-            width: 33%;
-        }
-
-        .home__details__item span {
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        .home__details__item p {
-            font-family: 'League Spartan', sans-serif;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 15px;
-            color: #707070;
-        }
-    </style>
-
     <div class="example-wrapper">
         <h1>Vue d'ensemble</h1>
         <div class="home__details">
             {% if clients %}
                 <div class="home__details__item">
+                    <h2 class="home__details__title">Clients</h2>
                     <span>{{ clients|length }}</span>
-                    <p> {{ (clients|length > 1) ? 'Clients' : 'Client' }}</p>
                 </div>
             {% endif %}
             {% if invoices %}
                 <div class="home__details__item">
+                    <h2 class="home__details__title">Factures</h2>
                     <span>{{ totalInvoices }} €</span>
                     <p> Pour un total de {{ invoices|length }} {{ (invoices|length > 1) ? 'factures' : 'facture' }}</p>
                 </div>
             {% endif %}
             {% if expenses %}
                 <div class="home__details__item">
+                    <h2 class="home__details__title">Dépenses</h2>
                     <span>{{ totalExpense }} €</span>
                     <p> Pour un total de {{ expenses|length }} {{ (expenses|length > 1) ? 'dépenses' : 'dépense' }}</p>
                 </div>
             {% endif %}
             {% if estimates %}
                 <div class="home__details__item">
+                    <h2 class="home__details__title">Devis</h2>
                     <span>{{ totalEstimates }} €</span>
                     <p> Pour un total de {{ estimates|length }} devis</p>
                 </div>
             {% endif %}
             <div class="home__details__item">
+                <h2 class="home__details__title">Chiffre d'affaires</h2>
                 <span>{{ totalInvoices - totalExpense}} €</span>
-                <p>Chiffre d’affaires (factures - dépenses)</p>
+                <p>(Factures - Dépenses)</p>
             </div>
         </div>
     </div>

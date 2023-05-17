@@ -39,7 +39,6 @@ class EstimateController extends AbstractController
             $estimate->setCreatedAt(new \DateTimeImmutable());
             $em->persist($estimate);
             $em->flush();
-            // dd($estimate);
             return $this->redirectToRoute('app_estimate');
         }
 
@@ -61,9 +60,12 @@ class EstimateController extends AbstractController
     }
 
     #[Route('/estimate/{id}/edit', name: 'app_estimate_edit')]
-    public function edit(Estimate $invoice, Request $request, EntityManagerInterface $em): Response
+    public function edit(Estimate $invoice, Request $request, EntityManagerInterface $em, EstimateRepository $er): Response
     {
         $form = $this->createForm(EstimateFormType::class, $invoice);
+
+        $estimateId = $request->get('id');
+        $estimate = $er->find($estimateId);
 
         $form->handleRequest($request);
 
@@ -73,13 +75,13 @@ class EstimateController extends AbstractController
             $estimate->setCreatedAt(new \DateTimeImmutable());
             $em->persist($estimate);
             $em->flush();
-            // dd($invoice);
             return $this->redirectToRoute('app_estimate');
         }
         
         return $this->render('estimate/edit.html.twig', [
             'controller_name' => 'EstimateController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'estimate' => $estimate,
         ]);
     }
 

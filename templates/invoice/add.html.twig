@@ -10,7 +10,12 @@
 			<a href="/invoice">Retour</a>
 		</div>
 		{{ form_start(form) }}
-		{{ form_widget(form) }}
+			{{ form_row(form.reference, {'label': 'Réference'}) }}
+			{{ form_row(form.dueDate, {'label': 'Échéance'}) }}
+			{{ form_row(form.totalAmount, {'label': 'Montant'}) }}
+			{{ form_row(form.taxRate, {'label': 'TVA'}) }}
+			{{ form_row(form.notes, {'label': 'Commentaire'}) }}
+			{{ form_row(form.status, {'label': 'État'}) }}
 		{{ form_end(form) }}
 	</div>
 {% endblock %}
