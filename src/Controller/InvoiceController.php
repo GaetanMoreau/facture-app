@@ -73,12 +73,11 @@ class InvoiceController extends AbstractController
             $invoice->setCreatedAt(new \DateTimeImmutable());
             $em->persist($invoice);
             $em->flush();
-            // dd($invoice);
             return $this->redirectToRoute('app_invoice');
         }
         
         return $this->render('invoice/edit.html.twig', [
-            'controller_name' => 'InvoiceController',
+            'invoice' => $invoice,
             'form' => $form->createView()
         ]);
     }

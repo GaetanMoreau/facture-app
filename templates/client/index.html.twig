@@ -41,7 +41,7 @@
                                 <div class="dropdown__togle__container">
                                     <a class="dropdown__toggle"
                                        href="{{ path('app_client_id', { 'id': client.getId() }) }}">Afficher</a>
-                                    <button class="dropdown__toggle menu__toggle" onclick="toggleDropdown()" aria-haspopup="true"
+                                    <button class="dropdown__toggle menu__toggle" onclick="toggleDropdown(this)" aria-haspopup="true"
                                             aria-expanded="false">
                                         >
                                     </button>
@@ -77,23 +77,23 @@
     </div>
 
     <script>
-        function toggleDropdown() {
-            var dropdownMenu = document.getElementById("dropdown__menu");
-            if (dropdownMenu.style.display === "none") {
-                dropdownMenu.style.display = "block";
+        function toggleDropdown(button) {
+            const dropdownMenu = button.parentNode.nextElementSibling;
+            if (dropdownMenu.style.display === 'none') {
+                dropdownMenu.style.display = 'block';
             } else {
-                dropdownMenu.style.display = "none";
+                dropdownMenu.style.display = 'none';
             }
         }
 
-        function openModal() {
-            var modal = document.getElementById("modal");
-            modal.style.display = "block";
+        function openModal(button) {
+            const modal = button.nextElementSibling;
+            modal.style.display = 'block';
         }
 
-        function closeModal() {
-            var modal = document.getElementById("modal");
-            modal.style.display = "none";
+        function closeModal(button) {
+            const modal = button.parentNode.parentNode.parentNode;
+            modal.style.display = 'none';
         }
     </script>
 

@@ -9,11 +9,23 @@
             <a href="/client">Retour</a>
         </div>
         {{ form_start(form) }}
-            {{ form_row(form.Firstname, {'label': 'Prénom'}) }}
-            {{ form_row(form.Lastname, {'label': 'Nom'}) }}
-            {{ form_row(form.Society, {'label': 'Société'}) }}
-            {{ form_row(form.email, {'label': 'Email'}) }}
-            {{ form_row(form.Phone, {'label': 'Téléphone'}) }}
+        {{ form_label(form.Firstname, 'Prénom') }}
+        {{ form_widget(form.Firstname, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(form.Lastname, 'Nom') }}
+        {{ form_widget(form.Lastname, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(form.Society, 'Société') }}
+        {{ form_widget(form.Society, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(form.email, 'Email') }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(form.Phone, 'Téléphone') }}
+        {{ form_widget(form.Phone, {'attr': {'class': 'form-control'}}) }}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary update-btn">Enregistrer</button>
+        </div>
         {{ form_end(form) }}
     </div>
 {% endblock %}
