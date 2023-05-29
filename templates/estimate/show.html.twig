@@ -5,6 +5,10 @@
 
 {% block body %}
     <div class="example-wrapper element__form__container">
+        <div class="element__form__title">
+            <h1>Devis n° {{ estimate.id }}</h1>
+            <a href="/estimate">Retour</a>
+        </div>
         <div class="client-info">
             <h3>Informations du devis</h3>
             <p><span class="label">Devis n°:</span> {{ estimate.id }}</p>

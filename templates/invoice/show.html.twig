@@ -5,6 +5,10 @@
 
 {% block body %}
 	<div class="example-wrapper element__form__container">
+		<div class="element__form__title">
+			<h1>Facture n° {{ invoice.id }}</h1>
+			<a href="/invoice">Retour</a>
+		</div>
 		<div class="client-info">
 			<h3>Informations de la facture</h3>
 			<p><span class="label">Réference:</span> {{ invoice.reference }}</p>
