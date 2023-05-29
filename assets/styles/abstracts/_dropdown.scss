@@ -5,15 +5,26 @@
 
 .dropdown__togle__container {
   display: flex;
+
+  a {
+    padding-right: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
 }
 
 .dropdown__toggle {
   background-color: #6858FE;
   border: none;
   color: #ffffff;
-  padding: 8px 16px;
+  padding: 4px 12px;
   font-size: 16px;
   cursor: pointer;
+
+  &:visited{
+    color: #fff;
+  }
 }
 .menu__toggle{
   background-color: #4336c2;

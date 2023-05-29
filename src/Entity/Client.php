@@ -39,6 +39,30 @@ class Client
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Estimate::class)]
     private Collection $estimates;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $job = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $additional_address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $City = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Country = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $postal_code = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $website = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $comments = null;
+
     public function __construct()
     {
         $this->invoices = new ArrayCollection();
@@ -178,6 +202,102 @@ class Client
                 $estimate->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getJob(): ?string
+    {
+        return $this->job;
+    }
+
+    public function setJob(?string $job): self
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getAdditionalAddress(): ?string
+    {
+        return $this->additional_address;
+    }
+
+    public function setAdditionalAddress(?string $additional_address): self
+    {
+        $this->additional_address = $additional_address;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->City;
+    }
+
+    public function setCity(?string $City): self
+    {
+        $this->City = $City;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->Country;
+    }
+
+    public function setCountry(?string $Country): self
+    {
+        $this->Country = $Country;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->postal_code;
+    }
+
+    public function setPostalCode(?int $postal_code): self
+    {
+        $this->postal_code = $postal_code;
+
+        return $this;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setWebsite(?string $website): self
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    public function getComments(): ?string
+    {
+        return $this->comments;
+    }
+
+    public function setComments(?string $comments): self
+    {
+        $this->comments = $comments;
 
         return $this;
     }

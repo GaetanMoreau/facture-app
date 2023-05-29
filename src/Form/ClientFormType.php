@@ -17,7 +17,16 @@ class ClientFormType extends AbstractType
             ->add('Firstname')
             ->add('Society')
             ->add('email')
-            ->add('Phone');
+            ->add('Phone')
+            ->add('Job')
+
+            ->add('Address')
+            ->add('Additional_address')
+            ->add('Postal_code')
+            ->add('City')
+            ->add('Country')
+            ->add('Website')
+            ->add('Comments');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

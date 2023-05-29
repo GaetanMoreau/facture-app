@@ -3,12 +3,30 @@
 {% block title %}Hello ClientController!{% endblock %}
 
 {% block body %}
-    <div class="example-wrapper">
-        <h1>Clients id {{ client.id }}</h1>
-        <td>{{ client.getFirstname() }}</td>
-        <td>{{ client.getLastname() }}</td>
-        <td>{{ client.getSociety() }}</td>
-        <td>{{ client.getEmail() }}</td>
-        <td>{{ client.getPhone() }}</td>
+    <div class="example-wrapper element__form__container">
+        <div class="client-info">
+            <h3>Informations du client</h3>
+            <p><span class="label">Nom:</span> {{ client.getLastname() }}</p>
+            <p><span class="label">Prénom:</span> {{ client.getFirstname() }}</p>
+            <p><span class="label">Société:</span> {{ client.getSociety() }}</p>
+            <p><span class="label">Fonction:</span> {{ client.getJob() }}</p>
+            <p><span class="label">Email:</span> {{ client.getEmail() }}</p>
+            <p><span class="label">Téléphone:</span> {{ client.getPhone() }}</p>
+        </div>
+
+        <div class="client-info">
+            <h3>Coordonnées du client</h3>
+            <p><span class="label">Adresse:</span> {{ client.getAddress() }}</p>
+            <p><span class="label">Complément d'adresse:</span> {{ client.getAdditionalAddress() }}</p>
+            <p><span class="label">Code postal:</span> {{ client.getPostalCode() }}</p>
+            <p><span class="label">Ville:</span> {{ client.getCity() }}</p>
+            <p><span class="label">Pays:</span> {{ client.getCountry() }}</p>
+        </div>
+
+        <div class="client-info">
+            <h3>Autres informations</h3>
+            <p><span class="label">Site web:</span> {{ client.getWebsite() }}</p>
+            <p><span class="label">Commentaires:</span> {{ client.getComments() }}</p>
+        </div>
     </div>
 {% endblock %}

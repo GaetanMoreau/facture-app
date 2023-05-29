@@ -84,6 +84,7 @@ class ExpenseController extends AbstractController
 
         return $this->render('expense/edit.html.twig', [
             'form' => $form->createView(),
+            'expense' => $expense
         ]);
     }
 }

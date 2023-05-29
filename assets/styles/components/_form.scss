@@ -10,10 +10,13 @@
     color: #6858FE;
   }
 }
-.element__form__container form {
-  margin: 0;
-  padding: 0;
-  max-width: 600px;
+.element__form__container {
+  padding-bottom: 8rem;
+  form {
+    margin: 0;
+    padding: 0;
+    max-width: 600px;
+  }
 }
 
 .element__form__container input[type="text"],
@@ -30,8 +33,9 @@
   margin-bottom: 10px;
 }
 
-.element__form__container label {
+.element__form__container h3 {
   font-weight: bold;
+  padding: 2rem 0 1rem 0;
 }
 
 .element__form__container button {
