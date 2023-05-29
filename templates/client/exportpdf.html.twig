@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .field {
+            margin-bottom: 10px;
+        }
+        .field label {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<h1>Fiche client</h1>
+
+<div class="field">
+    <label>Prénom:</label>
+    <div class="field-value">{{ client.getFirstname() }}</div>
+</div>
+
+<div class="field">
+    <label>Nom:</label>
+    <div class="field-value">{{ client.getLastname() }}</div>
+</div>
+
+<div class="field">
+    <label>Société:</label>
+    <div class="field-value">{{ client.getSociety() }}</div>
+</div>
+
+<div class="field">
+    <label>Fonction:</label>
+    <div class="field-value">{{ client.getJob() }}</div>
+</div>
+
+<div class="field">
+    <label>Email:</label>
+    <div class="field-value">{{ client.getEmail() }}</div>
+</div>
+
+<div class="field">
+    <label>Téléphone:</label>
+    <div class="field-value">{{ client.getPhone() }}</div>
+</div>
+
+<div class="field">
+    <label>Adresse:</label>
+    <div class="field-value">{{ client.getAddress() }}</div>
+</div>
+
+<div class="field">
+    <label>Complément d'adresse:</label>
+    <div class="field-value">{{ client.getAdditionalAddress() }}</div>
+</div>
+
+<div class="field">
+    <label>Code postal:</label>
+    <div class="field-value">{{ client.getPostalCode() }}</div>
+</div>
+
+<div class="field">
+    <label>Ville:</label>
+    <div class="field-value">{{ client.getCity() }}</div>
+</div>
+
+<div class="field">
+    <label>Pays:</label>
+    <div class="field-value">{{ client.getCountry() }}</div>
+</div>
+
+<div class="field">
+    <label>Site web:</label>
+    <div class="field-value">{{ client.getWebsite() }}</div>
+</div>
+
+<div class="field">
+    <label>Commentaires:</label>
+    <div class="field-value">{{ client.getComments() }}</div>
+</div>
+</body>
+</html>

@@ -6,6 +6,7 @@ use App\Entity\Estimate;
 use App\Form\EstimateFormType;
 use App\Repository\EstimateRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -96,5 +97,31 @@ class EstimateController extends AbstractController
 
         return $this->redirectToRoute('app_estimate');
     }
+    public function exportToPdfAction(EstimateRepository $er, $id)
+    {
+        $estimate = $er->find($id);
 
+        if (!$estimate) {
+            throw $this->createNotFoundException('Estimate not found');
+        }
+
+        $html = $this->renderView('estimate/exportpdf.html.twig', [
+            'estimate' => $estimate,
+        ]);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $pdfContent = $dompdf->output();
+
+        $response = new Response($pdfContent);
+        $response->headers->set('Content-Type', 'application/pdf');
+        $createdAt = $estimate->getCreatedAt();
+        $formattedCreatedAt = $createdAt->format('Y-m-d');
+
+        $filename = sprintf('devis-numero-%s-%s.pdf', $estimate->getId(), $formattedCreatedAt);
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
+
+        return $response;
+    }
 }

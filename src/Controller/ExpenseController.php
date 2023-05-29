@@ -6,6 +6,7 @@ use App\Entity\Expense;
 use App\Form\ExpenseFormType;
 use App\Repository\ExpenseRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -86,5 +87,32 @@ class ExpenseController extends AbstractController
             'form' => $form->createView(),
             'expense' => $expense
         ]);
+    }
+    public function exportToPdfAction(ExpenseRepository $er, $id)
+    {
+        $expense = $er->find($id);
+
+        if (!$expense) {
+            throw $this->createNotFoundException('Expense not found');
+        }
+
+        $html = $this->renderView('expense/exportpdf.html.twig', [
+            'expense' => $expense,
+        ]);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $pdfContent = $dompdf->output();
+
+        $response = new Response($pdfContent);
+        $response->headers->set('Content-Type', 'application/pdf');
+        $createdAt = $expense->getDate();
+        $formattedCreatedAt = $createdAt->format('Y-m-d');
+
+        $filename = sprintf('depense-numero-%s-%s.pdf', $expense->getId(), $formattedCreatedAt);
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
+
+        return $response;
     }
 }

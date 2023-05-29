@@ -3,8 +3,22 @@ controllers:
     path: ../src/Controller/
     namespace: App\Controller
   type: attribute
+export_to_pdf:
+  path: /export-client-to-pdf/{id}
+  controller: App\Controller\ClientController::exportToPdfAction
+export_estimate_to_pdf:
+  path: /export-estimate-to-pdf/{id}
+  controller: App\Controller\EstimateController::exportToPdfAction
+export_invoice_to_pdf:
+  path: /export-invoice-to-pdf/{id}
+  controller: App\Controller\InvoiceController::exportToPdfAction
+export_expense_to_pdf:
+  path: /export-expense-to-pdf/{id}
+  controller: App\Controller\ExpenseController::exportToPdfAction
 error:
   path: /{catchall}
   controller: App\Controller\ErrorController::index
   requirements:
     catchall: ".*"
+
+

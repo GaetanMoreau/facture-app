@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Client;
 use App\Form\ClientFormType;
 use App\Repository\ClientRepository;
+use Dompdf\Dompdf;
+
 
 class ClientController extends AbstractController
 {
@@ -90,5 +92,31 @@ class ClientController extends AbstractController
             'form' => $form->createView(),
             'client' => $client
         ]);
-    } 
+    }
+
+    public function exportToPdfAction(ClientRepository $cr, $id)
+    {
+        $client = $cr->find($id);
+
+        if (!$client) {
+            throw $this->createNotFoundException('Client not found');
+        }
+
+        $html = $this->renderView('client/exportpdf.html.twig', [
+            'client' => $client,
+        ]);
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $pdfContent = $dompdf->output();
+
+        $response = new Response($pdfContent);
+        $response->headers->set('Content-Type', 'application/pdf');
+        $filename = sprintf('fiche-client-%s-%s.pdf', $client->getLastname(), $client->getFirstname());
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
+
+
+        return $response;
+    }
 }

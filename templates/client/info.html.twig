@@ -28,5 +28,9 @@
             <p><span class="label">Site web:</span> {{ client.getWebsite() }}</p>
             <p><span class="label">Commentaires:</span> {{ client.getComments() }}</p>
         </div>
+
+        <div class="btn__container-left">
+            <a class="btn btn-primary" href="{{ path('export_to_pdf', {'id': client.id}) }}">Exporter en PDF</a>
+        </div>
     </div>
 {% endblock %}

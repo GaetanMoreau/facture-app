@@ -4,8 +4,19 @@
 {% endblock %}
 
 {% block body %}
-	<div class="example-wrapper">
-		<h1>Clients id
-			{{ invoice.id }}</h1>
+	<div class="example-wrapper element__form__container">
+		<div class="client-info">
+			<h3>Informations de la facture</h3>
+			<p><span class="label">Réference:</span> {{ invoice.reference }}</p>
+			<p><span class="label">Échéance:</span> {{ invoice.dueDate }}</p>
+			<p><span class="label">Montant:</span> {{ invoice.totalAmount }}</p>
+			<p><span class="label">TVA:</span> {{ invoice.taxRate }}</p>
+			<p><span class="label">Commentaire:</span> {{ invoice.notes }}</p>
+			<p><span class="label">État:</span> {{ invoice.status }}</p>
+		</div>
+
+		<div class="btn__container-left">
+			<a class="btn btn-primary" href="{{ path('export_invoice_to_pdf', {'id': invoice.id}) }}">Exporter en PDF</a>
+		</div>
 	</div>
 {% endblock %}

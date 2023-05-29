@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Devis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        .header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .info {
+            margin-bottom: 10px;
+        }
+        .amount {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1 class="title">Factures</h1>
+</div>
+
+<div class="info">
+    <p><span class="label">Factures n°:</span> {{ invoice.reference }}</p>
+    <p><span class="label">Date de création:</span> {{ invoice.createdAt | date('d/m/Y') }}</p>
+    <p><span class="label">Échéance:</span> {{ invoice.dueDate | date('d/m/Y') }}</p>
+    <p><span class="label">Taxe:</span> {{ invoice.taxRate }}</p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Quantité</th>
+        <th>Prix unitaire</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {# {% for item in estimate.items %}
+        <tr>
+            <td>{{ item.description }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitPrice }}€</td>
+            <td>{{ item.totalPrice }}€</td>
+        </tr>
+    {% endfor %} #}
+    </tbody>
+</table>
+
+<div class="amount">
+    <p><span class="label">Montant total:</span> {{ invoice.totalAmount }}€</p>
+</div>
+
+<div class="footer">
+    <p><span class="label">État:</span> {{ invoice.status }}</p>
+    <p><span class="label">Notes:</span> {{ invoice.notes }}</p>
+</div>
+</body>
+</html>

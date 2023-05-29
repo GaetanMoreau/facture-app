@@ -4,7 +4,16 @@
 {% endblock %}
 
 {% block body %}
-    <div class="example-wrapper">
-        <h1>Devis n°{{ estimate.id }}</h1>
+    <div class="example-wrapper element__form__container">
+        <div class="client-info">
+            <h3>Informations du devis</h3>
+            <p><span class="label">Devis n°:</span> {{ estimate.id }}</p>
+            <p><span class="label">Date de création:</span> {{ estimate.createdAt | date('d/m/Y') }}</p>
+            <p><span class="label">Montant:</span> {{ estimate.amount }}€</p>
+            <p><span class="label">État:</span> {{ estimate.state }}</p>
+        </div>
+        <div class="btn__container-left">
+            <a class="btn btn-primary" href="{{ path('export_estimate_to_pdf', {'id': estimate.id}) }}">Exporter en PDF</a>
+        </div>
     </div>
 {% endblock %}
