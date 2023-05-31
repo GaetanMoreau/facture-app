@@ -12,11 +12,14 @@
 }
 .element__form__container {
   padding-bottom: 8rem;
-  form {
+  form, {
     margin: 0;
     padding: 0;
     max-width: 600px;
   }
+}
+.login__form {
+  max-width: 600px;
 }
 
 .element__form__container input[type="text"],
