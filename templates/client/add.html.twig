@@ -24,10 +24,13 @@
 
         {{ form_label(form.email, 'Email') }}
         {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.email) }}
 
         {{ form_label(form.Phone, 'Téléphone') }}
         {{ form_widget(form.Phone, {'attr': {'class': 'form-control'}}) }}
-
+        {% for error in form.Phone.vars.errors %}
+            <li>{{ error.message|trans }}</li>
+        {% endfor %}
         <h3>Coordonnées du client</h3>
         {{ form_label(form.Address, 'Adresse') }}
         {{ form_widget(form.Address, {'attr': {'class': 'form-control'}}) }}

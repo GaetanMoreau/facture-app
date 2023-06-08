@@ -1,0 +1,3 @@
+form:
+  validation:
+    phone: 'Le numéro de téléphone ne doit contenir que des chiffres.'

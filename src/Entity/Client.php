@@ -54,8 +54,8 @@ class Client
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Country = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $postal_code = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $postal_code = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $website = null;
@@ -271,7 +271,7 @@ class Client
         return $this->postal_code;
     }
 
-    public function setPostalCode(?int $postal_code): self
+    public function setPostalCode(?string $postal_code): self
     {
         $this->postal_code = $postal_code;
 
