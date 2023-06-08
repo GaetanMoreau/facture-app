@@ -26,22 +26,21 @@ class ClientController extends AbstractController
         ]);
     }
 
-
-
-    
     #[Route('/client/add', name: 'app_client_add')]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
         $client = new Client();
-        $form = $this->createForm(ClientFormType::class, $client);
+        $client->setUser($this->getUser()); // Set the user first.
 
+        $form = $this->createForm(ClientFormType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $client = $form->getData();
-            $client->setUser($this->getUser());
             $em->persist($client);
             $em->flush();
+
+            $this->addFlash('success', 'Client added successfully.');
+
             return $this->redirectToRoute('app_client');
         }
 
@@ -49,6 +48,7 @@ class ClientController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
     #[Route('/client/{id}', name: 'app_client_id')]
     public function show(ClientRepository $cr, Request $request): Response
     {
@@ -59,6 +59,7 @@ class ClientController extends AbstractController
             'client' => $client,
         ]);
     }
+
     #[Route('/client/{id}/delete', name: 'app_client_delete')]
     public function delete(ClientRepository $cr, Request $request, EntityManagerInterface $em): Response
     {
