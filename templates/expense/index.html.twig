@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes dépenses - Facture&Devis{% endblock %}
+{% block title %}Liste des dépenses - Facture&Devis{% endblock %}
 
 {% block body %}
     <div class="example-wrapper">
@@ -47,19 +47,19 @@
                                 </div>
 
                                 <div class="dropdown__menu" id="dropdown__menu" style="display: none;">
-                                    <a class="dropdown__item"
+                                    <a class="dropdown__toggle"
                                        href="{{ path('app_expense_edit', { 'id': expense.id }) }}"><img src="{{ asset('images/icons/icon-edit.svg')}}"> Modifier</a>
 
                                     <button class="dropdown__toggle" onclick="openModal(this)"><img src="{{ asset('images/icons/icon-delete.svg')}}">Supprimer</button>
 
                                     <div class="modal" id="modal">
                                         <div class="modal__container">
-                                            <h2 class="modal__title">Êtes-vous sûr de vouloir supprimer cette dépense ?</h2>
+                                            <h2 class="modal__title">Êtes-vous sûr de vouloir supprimer ce client ?</h2>
                                             <p class="modal__content">Toute suppression est définitive et les données ne pourront être récupérées.</p>
                                             <div class="btn__container">
-                                                <a class="btn btn-primary btn__warning"
+                                                <a class="btn btn-primary btn__warning delete-button"
                                                    href="{{ path('app_expense_delete', { 'id': expense.id }) }}">Supprimer</a>
-                                                <button class="btn btn-primary"
+                                                <button class="btn btn-primary cancel-button"
                                                         onclick="closeModal(this)" >Annuler</button>
                                             </div>
                                         </div>
@@ -84,12 +84,14 @@
             }
             function openModal(button) {
                 const modal = button.parentNode.querySelector('.modal');
-                modal.style.display = 'block';
+                modal.style.display = 'flex';
             }
-            function closeModal() {
-                const modal = document.getElementById("modal");
-                modal.style.display = "none";
+
+            function closeModal(button) {
+                const modal = button.closest('.modal');
+                modal.style.display = 'none';
             }
+
             function closeMenuOnClickOutside(event) {
                 const dropdownMenus = document.querySelectorAll('.dropdown__menu');
                 const menuToggles = document.querySelectorAll('.menu__toggle');
@@ -100,6 +102,7 @@
                     }
                 });
             }
+
             document.addEventListener('click', closeMenuOnClickOutside);
         </script>
     </div>
