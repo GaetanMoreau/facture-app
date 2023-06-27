@@ -1,10 +1,17 @@
 .main__container{
   display: flex;
-  height: 100%;
   flex-direction: row;
 }
-.example-wrapper {
+.example-wrapper, .list__container {
   margin: 1em auto;
+  padding-bottom: 4rem;
   width: 95%;
   font: 18px / 1.5 sans-serif;
+
+}
+.client-info{
+  h3{
+    font-weight: bold;
+    padding: 2rem 0 1rem 0;
+  }
 }

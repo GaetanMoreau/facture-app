@@ -46,8 +46,6 @@
 }
 
 .dropdown__menu a {
-  display: block;
-  padding: 3px 20px;
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
@@ -55,6 +53,10 @@
   white-space: nowrap;
   font-size: 16px;
   border-bottom: 1px solid #8178dc;
+  border-top: 1px solid #8178dc;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .dropdown__menu a:hover,

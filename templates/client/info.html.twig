@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClientController!{% endblock %}
+{% block title %}Client {{client.firstname}} {{ client.lastname }} - Facture&Devis{% endblock %}
 
 {% block body %}
-    <div class="example-wrapper element__form__container">
+    <div class="list__container">
         <div class="element__form__title">
             <h1>Client {{client.firstname}} {{ client.lastname }}</h1>
             <a href="/client">Retour</a>

@@ -12,6 +12,12 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__visible{
+  display: flex;
 }
 
 .modal__title{
